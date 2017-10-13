@@ -172,7 +172,7 @@ function andRestrictTo(role) {
   }
 }
 
-pp.get('/login', routes.login);
+app.get('/login', routes.login);
 app.get('/index', ensureAuthenticated, routes.base);
 app.get('/auth/google', passport.authenticate('google', {scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']}));
 
