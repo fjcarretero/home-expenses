@@ -27,6 +27,7 @@ var generate_mongo_url = function(obj){
 
 var mongourl = generate_mongo_url(mongo);
 console.log(mongourl);
+// Test
 
 models.defineModels(mongoose, function() {
   User = mongoose.model('User');
