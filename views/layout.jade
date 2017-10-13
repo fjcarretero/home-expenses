@@ -1,0 +1,47 @@
+doctype
+- var env = process.env['NODE_ENV']
+html
+	head
+		meta(charset='iso-8859-1')
+		meta(name='viewport', content='width=device-width, initial-scale=1.0')
+		title Home Expenses App
+		link(rel='stylesheet', href='/css/bootstrap.min.css')
+		link(rel='stylesheet', href='/css/app.css')
+		link(rel='stylesheet', href='/css/bootstrap-glyphicons.css')
+		link(rel='stylesheet', href='/css/typeahead.js-bootstrap.css')
+		<!--[if lte IE 8]>
+		script
+			document.createElement('ng-include')
+			document.createElement('ng-pluralize')
+			document.createElement('ng-view')
+			document.createElement('textile')
+ 
+			// Optionally these for CSS
+			document.createElement('ng:include')
+			document.createElement('ng:pluralize')
+			document.createElement('ng:view')
+		<![endif]-->
+		script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js')
+		script(src='js/lib/moment/moment.min.js')
+		script(src='js/lib/moment/moment-timezone.min.js')
+		script(src='https://d3js.org/d3.v4.min.js')
+		script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js')
+		script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.min.js')
+		script(src='js/lib/angular-ui-router/angular-ui-router.min.js')
+		script(src='js/lib/angular-ui/ui-bootstrap-tpls-0.10.0.min.js')
+		- if (env === 'production')		
+			script(src='js/home-expenses.min.js')
+			script(src='js/lib/bootstrap/bootstrap.min.js')
+			script(src='js/lib/underscore/underscore.min.js')
+			script(src='js/lib/ng-csv/ng-csv.min.js')
+		- else 
+			script(src='js/app.js')
+			script(src='js/controllers.js')
+			script(src='js/services.js')
+			script(src='js/directives.js')
+			script(src='js/filters.js')
+			script(src='js/lib/bootstrap/bootstrap.js')
+			script(src='js/lib/underscore/underscore.min.js')
+			script(src='js/lib/ng-csv/ng-csv.js')
+	body
+		block body

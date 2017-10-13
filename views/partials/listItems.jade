@@ -1,0 +1,27 @@
+#addItem.container
+	.messagesList(app-messages)
+	.container.navbar.navbar-default
+		.row
+			.col-xs-2.col-sm-2.text-left
+				button.btn.btn-lg.btn-default.navbar-btn(ng-csv='data', csv-header='header', filename='gastos.csv', field-separator=';')
+					span.glyphicon.glyphicon-floppy-save
+			.col-xs-7.col-sm-8.text-center
+				a.navbar-brand(ui-sref='addItem') HomeExpenses
+			.col-xs-3.col-sm-2.text-right
+				a.btn.btn-lg.btn-default.navbar-btn(ui-sref='addItem')
+					span.glyphicon.glyphicon-plus
+	.row.show-grid
+		.col-xs-12
+			form.form-horizontal(name='form', role='form', novalidate)
+				.form-group
+					label.col-xs-4.control-label(for='month') M&eacute;s
+					.col-xs-8
+						select.form-control(ng-model='filterDate', ng-options='c.text for c in dateList', name='month', required)
+		.col-xs-12
+			accordion(close-others='true')
+				accordion-group(ng-repeat='(category, items) in groupedItems')
+					accordion-heading {{ category }}
+						span.badge {{ items | sumPrices | formatPrice }}
+					.list-group(style='margin-bottom: 0px;')
+						li.list-group-item(ng-repeat='item in items') {{ item.name }} - {{ item.date | formatDate }}
+							span.btn-group.pull-right {{ item.price | formatPrice}}						

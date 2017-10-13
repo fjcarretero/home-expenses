@@ -1,0 +1,99 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+.menu > li:nth-child(1):before {
+  content: "";
+  padding: 0;
+}
+
+form .input-xlarge {
+    padding: 11px 19px;   /* equal to btn-large */
+}
+.btn-lg [class^="icon-"], .btn-lg [class*=" icon-"] {
+    vertical-align:top;    
+}
+
+.infoMessage, .successMessage, .warningMessage, .errorMessage, .validationMessage {
+	border: 1px solid;
+	margin: 10px 0px;
+	padding:15px 10px 15px 50px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+
+.infoMessage {
+	color: #00529B;
+	background-color: #BDE5F8;
+}
+
+.successMessage {
+	color: #4F8A10;
+	background-color: #DFF2BF;
+}
+
+.warningMessage {
+	color: #9F6000;
+	background-color: #FEEFB3;
+}
+
+.errorMessage {
+	color: #D8000C;
+	background-color: #FFBABA;
+}
+
+.show-grid {
+	margin-bottom: 15px;
+}
+
+.accordion-toggle > .badge {
+  float: right;
+}
+
+.accordion-toggle > .badge + .badge {
+  margin-right: 5px;
+}
+
+.stricken {
+	text-decoration: line-through;
+}
+
+a:hover.stricken {
+	text-decoration: line-through;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.axis--x path {
+    display: none;
+}
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 1.5px;
+}

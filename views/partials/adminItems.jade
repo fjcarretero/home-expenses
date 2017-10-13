@@ -1,0 +1,17 @@
+#adminItem.container
+	.messagesList(app-messages)
+	.container.navbar.navbar-default
+		.row
+			.col-xs-2.col-sm-2.text-left
+			.col-xs-7.col-sm-8.text-center
+				a.navbar-brand(href='#!/') HomeExpenses
+			.col-xs-3.col-sm-2.text-right
+				a.btn.btn-lg.btn-default.navbar-btn(ui-sref='addItem')
+					span.glyphicon.glyphicon-plus
+	.row.show-grid
+		.col-xs-12
+			.list-group(ng-repeat='item in items')
+				a.list-group-item(ng-click='removeItem(item._id)')
+					h4.list-group-item-heading {{ item.name }}
+						span(class='glyphicon glyphicon-remove pull-right')
+					p.list-group-item-text {{ item.date | formatDate }} {{ item.price | formatPrice }}€

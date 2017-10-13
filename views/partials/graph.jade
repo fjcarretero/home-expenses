@@ -1,0 +1,13 @@
+#graph.container
+	.messagesList(app-messages)
+	.container.navbar.navbar-default
+		.row
+			.col-xs-2.col-sm-2.text-left
+			.col-xs-7.col-sm-8.text-center
+				a.navbar-brand(ui-sref='addItem') HomeExpenses
+			.col-xs-3.col-sm-2.text-right
+				a.btn.btn-lg.btn-default.navbar-btn(ui-sref='listItems')
+					span.glyphicon.glyphicon-list
+	.row.show-grid
+		.col-xs-12
+			graph(data='data', options='options')

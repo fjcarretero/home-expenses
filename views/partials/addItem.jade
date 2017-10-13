@@ -1,0 +1,38 @@
+#addItem.container
+	.messagesList(app-messages)
+	.container.navbar.navbar-default
+		.row
+			.col-xs-2.col-sm-2.text-left
+			.col-xs-7.col-sm-8.text-center
+				a.navbar-brand(ui-sref='addItem') HomeExpenses
+			.col-xs-3.col-sm-2.text-right
+				a.btn.btn-lg.btn-default.navbar-btn(ui-sref='listItems')
+					span.glyphicon.glyphicon-list
+	.row.show-grid
+		.col-xs-12
+			form.form-horizontal(name='form', role='form', novalidate)
+				.form-group
+					label.col-xs-4.control-label(for='name') Concepto
+					.col-xs-8
+						input.form-control(type='text', ng-model='item.name', name='name', id='name', required)
+						div(ng-show='form.name.$invalid') El concepto 
+							span(ng-show='form.name.$error.required') es requerido
+							span(ng-show='form.name.$error.pattern') no es v&aacute;lido
+				.form-group
+					label.col-xs-4.control-label(for='date') Fecha
+					.col-xs-8
+						input.form-control(type='date', ng-model='item.date', name='date', required)
+				.form-group
+					label.col-xs-4.control-label(for='price') Importe
+					.col-xs-8
+						input.form-control(type='number', step='0.01', min='0', ng-model='item.priceStr', name='price', required)
+						div(ng-show='form.price.$invalid') El importe no es v&aacute;lido
+				.form-group
+					label.col-xs-4.control-label(for='category') Categor&iacute;a
+					.col-xs-8
+						select.form-control(ng-model='item.category', ng-options='c for c in categoryList', name='category', required)
+							option(value='') Selecciona categor&iacute;a
+						div(ng-show='form.category.$invalid') La categor&iacute;a no es v&aacute;lida
+				ul.pager
+					li
+						button.btn.btn-lg.btn-primary(type='submit', ng-click='addItem()', ng-disabled='form.$invalid') Add
