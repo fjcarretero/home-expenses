@@ -204,7 +204,7 @@ app.get('*', ensureAuthenticated, routes.base);
 
 // Start server
 
-app.listen(process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3000, process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1", function(){
+app.listen(process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080, process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0', function(){
 	logger.info("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
