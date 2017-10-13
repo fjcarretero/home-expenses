@@ -172,6 +172,9 @@ function andRestrictTo(role) {
   }
 }
 
+app.get('/probe', function(req, res){
+	res.send(200, 'Ok');
+});
 app.get('/login', routes.login);
 app.get('/index', ensureAuthenticated, routes.base);
 app.get('/auth/google', passport.authenticate('google', {scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']}));
@@ -202,5 +205,6 @@ app.get('*', ensureAuthenticated, routes.base);
 // Start server
 
 app.listen(process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 3000, process.env.IP || process.env.OPENSHIFT_NODEJS_IP || "127.0.0.1", function(){
-  logger.info("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+	logger.info("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+	console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
