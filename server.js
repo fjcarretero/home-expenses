@@ -9,7 +9,8 @@ var express = require('express'),
   mongoose = require('mongoose'),
   models = require('./models'),
   passport = require('passport'),
-  GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
+	GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
+	morgan  = require('morgan'),
   logger = require('./winston');
 
 var app = module.exports = express();
@@ -40,7 +41,8 @@ app.configure( function(){
   app.use(express.static(__dirname + '/public'));
   app.use(express.session({ secret: 'keyboard cat' }));
   app.use(passport.initialize());
-  app.use(passport.session());
+	app.use(passport.session());
+	app.use(morgan('combined'));
   app.use(clientErrorHandler);
   app.use(errorHandler);
   app.use(app.router);
