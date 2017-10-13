@@ -179,14 +179,14 @@ app.get('/probe', function(req, res){
 });
 app.get('/login', routes.login);
 app.get('/index', ensureAuthenticated, routes.base);
-app.get('/auth/google', passport.authenticate('google', {scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']}));
-
 app.get('/auth/google/callback', 
 	passport.authenticate('google', { failureRedirect: '/login' }),
 	function(req, res) {
 		res.redirect(req.session.originalUrl ? req.session.originalUrl : '/index');
 	}
 );
+app.get('/auth/google/redirect', passport.authenticate('google', {scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']}));
+
 
 app.get('/partials/:name', ensureAuthenticated, routes.partials);
 
