@@ -35,7 +35,8 @@ models.defineModels(mongoose, function() {
 });
 
 var user = null;
-usrs.forEach(function (usr){
+usrs.forEach(function (usr1){
+    var usr = JSON.parse(usr1);
 	user = new User;
 	console.log('email ' + usr.email);
 	console.log('role ' + usr.role);
