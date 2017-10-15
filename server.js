@@ -100,8 +100,9 @@ passport.use(new GoogleStrategy( googleConfig,
       
     logger.info('email=' + profile.emails[0].value);
 		User.findOne({ email: profile.emails[0].value }, function(err, user) {
+			logger.info('inside findOne');
 			if (err) { 
-				logger.error(err);
+				logger.error('Error '+ err);
 				return done(err); 
 			}
 			if (user) {
