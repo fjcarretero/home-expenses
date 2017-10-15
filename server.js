@@ -42,7 +42,9 @@ app.configure( function(){
   app.use(express.session({ secret: 'keyboard cat' }));
   app.use(passport.initialize());
 	app.use(passport.session());
-	app.use(morgan('combined'));
+	app.use(morgan('combined', {
+			skip: function (req, res) { return req.url === '/probe' }
+	}));
   app.use(clientErrorHandler);
   app.use(errorHandler);
   app.use(app.router);
@@ -98,14 +100,17 @@ passport.use(new GoogleStrategy( googleConfig,
       
     logger.info('email=' + profile.emails[0].value);
 		User.findOne({ email: profile.emails[0].value }, function(err, user) {
-			if (err) { return done(err); }
+			if (err) { 
+				logger.error(err);
+				return done(err); 
+			}
 			if (user) {
 				user.name = profile.displayName;
 				//user.role = 'admin';
-				console.log('User found');
+				logger.info('User found');
 				return done(null, user);
 			} else {
-				console.log('User not found ' + user);
+				logger.error('User not found ' + user);
 				return done(null, false, { message: 'User not found' });
 			}
 		});
