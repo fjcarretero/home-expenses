@@ -188,6 +188,7 @@ app.get('/index', ensureAuthenticated, routes.base);
 app.get('/callback', 
 	passport.authenticate('google', { failureRedirect: '/login' }),
 	function(req, res) {
+		logger.info('inside authenticate')
 		res.redirect('/index');
 	}
 );
