@@ -96,16 +96,16 @@ passport.use(new GoogleStrategy( googleConfig,
       // to associate the Google account with a user record in your database,
       // and return that user instead.
       
-      logger.info('email=' + profile.emails[0].value);
+    logger.info('email=' + profile.emails[0].value);
 		User.findOne({ email: profile.emails[0].value }, function(err, user) {
 			if (err) { return done(err); }
 			if (user) {
 				user.name = profile.displayName;
 				//user.role = 'admin';
-				//console.log(profile);
+				console.log('User found');
 				return done(null, user);
 			} else {
-				logger.error('User not found %s', user);
+				console.log('User not found ' + user);
 				return done(null, false, { message: 'User not found' });
 			}
 		});
@@ -182,7 +182,7 @@ app.get('/index', ensureAuthenticated, routes.base);
 app.get('/callback', 
 	passport.authenticate('google', { failureRedirect: '/login' }),
 	function(req, res) {
-		res.redirect(req.session.originalUrl ? req.session.originalUrl : '/index');
+		res.redirect('/index');
 	}
 );
 app.get('/redirect', passport.authenticate('google', {scope: ['https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']}));
