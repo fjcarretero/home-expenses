@@ -46,6 +46,8 @@ usrs.forEach(function (usr1){
 	user.save(function (error){
 		if (error) {
 			console.log('Error creating ' + error);
-		}
+		} else {
+            console.log('Done');
+        }
 	});
 });
