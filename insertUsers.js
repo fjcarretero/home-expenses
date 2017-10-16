@@ -31,11 +31,7 @@ console.log(mongourl);
 
 models.defineModels(mongoose, function() {
   User = mongoose.model('User');
-  db = mongoose.createConnection(mongourl);
-  db.on('error', console.error.bind(console, 'connection.error:'));
-  db.on('open', function(){
-	  console.log('open');
-  })
+  db = mongoose.connect(mongourl);
 });
 
 var user = null;
