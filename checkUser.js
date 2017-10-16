@@ -31,7 +31,11 @@ console.log(mongourl);
 
 models.defineModels(mongoose, function() {
   User = mongoose.model('User');
-  db = mongoose.connect(mongourl);
+  db = mongoose.createConnection(mongourl);
+  db.on('error', console.error.bind(console, 'connection.error:'));
+  db.on('open', function(){
+      console.log('open');
+  })
 });
 
 User.findOne({ email: usrs[0] }, function(err, user) {

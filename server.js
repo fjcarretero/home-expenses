@@ -153,9 +153,11 @@ var mongourl = generate_mongo_url(mongo);
 models.defineModels(mongoose, function() {
   app.User = User = mongoose.model('User');
   app.Item = Item = mongoose.model('Item');
-  db = mongoose.connect(mongourl, function(error){
-		logger.error(error);
-	});
+	db = mongoose.createConnection(mongourl);
+	db.on('error', console.error.bind(console, 'connection.error:'));
+	db.on('open', function(){
+		console.log('open');
+	})
 });
 
 // Routes
