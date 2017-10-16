@@ -98,23 +98,23 @@ passport.use(new GoogleStrategy( googleConfig,
       // to associate the Google account with a user record in your database,
       // and return that user instead.
       
-    logger.info('email=' + profile.emails[0].value);
-		User.findOne({ email: profile.emails[0].value }, function(err, user) {
-			logger.info('inside findOne');
-			if (err) { 
-				logger.error('Error '+ err);
-				return done(err); 
-			}
-			if (user) {
-				user.name = profile.displayName;
-				//user.role = 'admin';
-				logger.info('User found');
-				return done(null, user);
-			} else {
-				logger.error('User not found ' + user);
-				return done(null, false, { message: 'User not found' });
-			}
-		});
+			logger.info('email=' + profile.emails[0].value);
+			User.findOne({ email: profile.emails[0].value }, function(err, user) {
+				logger.info('inside findOne');
+				if (err) { 
+					logger.error('Error '+ err);
+					return done(err); 
+				}
+				if (user) {
+					user.name = profile.displayName;
+					//user.role = 'admin';
+					logger.info('User found');
+					return done(null, user);
+				} else {
+					logger.error('User not found ' + user);
+					return done(null, false, { message: 'User not found' });
+				}
+			});
     });
   }
 ));
@@ -151,9 +151,13 @@ var mongourl = generate_mongo_url(mongo);
 //var mongourl = mongo['url'];
 
 models.defineModels(mongoose, function() {
-  app.User = User = mongoose.model('User');
-  app.Item = Item = mongoose.model('Item');
 	db = mongoose.createConnection(mongourl);
+	app.User = User = db.model('User');
+  app.Item = Item = db.model('Item');
+	db.on('error', console.error.bind(console, 'connection.error:'));
+	db.once('open', function(){
+		console.log('connection open');
+	});
 });
 
 // Routes

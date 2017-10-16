@@ -41,7 +41,6 @@ User.findOne({ email: usrs[0] }, function(err, user) {
         return done(err); 
     }
     if (user) {
-        user.name = profile.displayName;
         //user.role = 'admin';
         console.log('User found');
     } else {
