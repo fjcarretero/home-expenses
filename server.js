@@ -192,6 +192,7 @@ app.get('/probe', function(req, res){
     	console.log( "Number of docs: ", count )
 			res.send(200, 'Ok');
 		}
+	});
 });
 app.get('/login', routes.login);
 app.get('/index', ensureAuthenticated, routes.base);
