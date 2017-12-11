@@ -46,4 +46,5 @@ User.findOne({ email: usrs[0] }, function(err, user) {
     } else {
         console.log.error('User not found ' + user);
     }
+    mongoose.disconnect();
 });

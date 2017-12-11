@@ -48,6 +48,7 @@ usrs.forEach(function (usr1){
 			console.log('Error creating ' + error);
 		} else {
             console.log('Done');
-        }
+		}
+		mongoose.disconnect();
 	});
 });

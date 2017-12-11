@@ -185,7 +185,13 @@ function andRestrictTo(role) {
 }
 
 app.get('/probe', function(req, res){
-	res.send(200, 'Ok');
+	User.count({}, function(err, count){
+		if (err) {
+			res.send(500, 'NOk');
+		} else {
+    	console.log( "Number of docs: ", count )
+			res.send(200, 'Ok');
+		}
 });
 app.get('/login', routes.login);
 app.get('/index', ensureAuthenticated, routes.base);
